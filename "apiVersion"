@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "RegistryName": {
+            "defaultValue": "yourregistry",
+            "type": "String",
+            "metadata": {
+                "description": "Name of the registry to add Docker Scout"
+            }
+        },
+        "EventGridTopicName": {
+            "defaultValue": "docker-scout-repository-ACR-1-c189",
+            "type": "String",
+            "metadata": {
+                "description": "Name of the Event Grid Topic. Docker Scout will subscribe to the events of this topic."
+            }
+        }
+    },
+    "variables": {
+        "accessTokenName": "docker-scout-readonly-token-ACR-1-c189",
+        "webhookURL": "https://api.dso.docker.com/webhook/5fe74c06-225f-45f9-9ce6-b80c21c5a72b"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.EventGrid/systemTopics",
+            "apiVersion": "2023-06-01-preview",
+            "name": "[parameters('EventGridTopicName')]",
+            "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "None"
+            },
+            "properties": {
+                "source": "[extensionResourceId(resourceGroup().Id , 'Microsoft.ContainerRegistry/Registries', parameters('RegistryName'))]",
+                "topicType": "Microsoft.ContainerRegistry.Registries"
+            }
+        },
+        {
+            "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
+            "apiVersion": "2023-06-01-preview",
+            "name": "[concat(parameters('EventGridTopicName'), '/image-change')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.EventGrid/systemTopics', parameters('EventGridTopicName'))]"
+            ],
+            "properties": {
+                "destination": {
+                    "properties": {
+                        "maxEventsPerBatch": 1,
+                        "preferredBatchSizeInKilobytes": 64,
+                        "endpointUrl": "[variables('webhookURL')]"
+                    },
+                    "endpointType": "WebHook"
+                },
+                "filter": {
+                    "includedEventTypes": [
+                        "Microsoft.ContainerRegistry.ImagePushed",
+                        "Microsoft.ContainerRegistry.ImageDeleted"
+                    ],
+                    "enableAdvancedFilteringOnArrays": true
+                },
+                "labels": [],
+                "eventDeliverySchema": "EventGridSchema",
+                "retryPolicy": {
+                    "maxDeliveryAttempts": 30,
+                    "eventTimeToLiveInMinutes": 1440
+                }
+            }
+        },
+        {
+            "type": "Microsoft.ContainerRegistry/registries/tokens",
+            "apiVersion": "2023-01-01-preview",
+            "name": "[concat(parameters('RegistryName'), '/', variables('accessTokenName'))]",
+            "properties": {
+                "credentials": {},
+                "scopeMapID": "[resourceId('Microsoft.ContainerRegistry/registries/scopeMaps', parameters('RegistryName'), '_repositories_pull_metadata_read')]"
+            }
+        }
+    ]
+}
