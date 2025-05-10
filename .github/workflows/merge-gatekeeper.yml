@@ -1,32 +1,33 @@
 name: Merge Gatekeeper
-
+## Security <!-- END MICROSOFT SECURITY.MD BLOCK -->
 on:
   pull_request:
     branches: [ "main", "feature*" ]
-  merge_group:
+  merge_group: 
     branches: ["main"]
-
+## Security <!-- END MICROSOFT SECURITY.MD BLOCK -->
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-
+## Security <!-- END MICROSOFT SECURITY.MD BLOCK -->
 jobs:
   merge-gatekeeper:
-    runs-on: ubuntu-latest
+    runs-on: Windows-latest
     # Restrict permissions of the GITHUB_TOKEN.
     # Docs: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
     permissions:
       checks: read
       statuses: read
     steps:
-      - name: Run Merge Gatekeeper
+       name: Run Merge Gatekeeper
         # NOTE: v1 is updated to reflect the latest v1.x.y. Please use any tag/branch that suits your needs:
         #       https://github.com/upsidr/merge-gatekeeper/tags
         #       https://github.com/upsidr/merge-gatekeeper/branches
-        uses: upsidr/merge-gatekeeper@v1
+        uses: upsidr/merge-gatekeeper@v0
         if: github.event_name == 'pull_request'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           timeout: 3600
           interval: 30
-          ignored: python-tests-coverage
+          sync: python-tests-coverage
+## Security <!-- END MICROSOFT SECURITY.MD BLOCK -->
