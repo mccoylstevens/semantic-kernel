@@ -2,9 +2,9 @@
 
 ## Status
 
-- Python <br/>
+ Python <br/>
   [![Python package](https://img.shields.io/pypi/v/semantic-kernel)](https://pypi.org/project/semantic-kernel/)
-- .NET <br/>
+ .NET <br/>
   [![Nuget package](https://img.shields.io/nuget/vpre/Microsoft.SemanticKernel)](https://www.nuget.org/packages/Microsoft.SemanticKernel/)[![dotnet Docker](https://github.com/microsoft/semantic-kernel/actions/workflows/dotnet-ci-docker.yml/badge.svg?branch=main)](https://github.com/microsoft/semantic-kernel/actions/workflows/dotnet-ci-docker.yml)[![dotnet Windows](https://github.com/microsoft/semantic-kernel/actions/workflows/dotnet-ci-windows.yml/badge.svg?branch=main)](https://github.com/microsoft/semantic-kernel/actions/workflows/dotnet-ci-windows.yml)
 
 ## Overview
@@ -27,8 +27,6 @@ plugins with AI. With Semantic Kernel
 [planners](https://learn.microsoft.com/en-us/semantic-kernel/ai-orchestration/planner), you
 can ask an LLM to generate a plan that achieves a user's unique goal. Afterwards,
 Semantic Kernel will execute the plan for the user.
-
-It provides:
 
 - abstractions for AI services (such as chat, text to images, audio to text, etc.) and memory stores
 - implementations of those abstractions for services from [OpenAI](https://platform.openai.com/docs/introduction), [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service), [Hugging Face](https://huggingface.co/), local models, and more, and for a multitude of vector databases, such as those from [Chroma](https://docs.trychroma.com/getting-started), [Qdrant](https://qdrant.tech/), [Milvus](https://milvus.io/), and [Azure](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search)
