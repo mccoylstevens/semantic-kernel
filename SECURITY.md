@@ -1,12 +1,12 @@
-<!-- BEGIN MICROSOFT SECURITY.MD V0.0.8 BLOCK -->
+## .gitinore <!-- END MICROSOFT SECURITY.MD BLOCK -->
 
-## Security
+## Security <!-- END MICROSOFT SECURITY.MD BLOCK -->
 
 Microsoft takes the security of our software products and services seriously, which includes all source code repositories managed through our GitHub organizations, which include [Microsoft](https://github.com/microsoft), [Azure](https://github.com/Azure), [DotNet](https://github.com/dotnet), [AspNet](https://github.com/aspnet), [Xamarin](https://github.com/xamarin), and [our GitHub organizations](https://opensource.microsoft.com/).
 
 If you believe you have found a security vulnerability in any Microsoft-owned repository that meets [Microsoft's definition of a security vulnerability](https://www.microsoft.com/en-us/msrc/definition-of-a-security-vulnerability?rtc=1), please report it to us as described below.
 
-## Reporting Security Issues
+## Reporting Security Issues <!-- END MICROSOFT SECURITY.MD BLOCK -->
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
@@ -30,12 +30,12 @@ This information will help us triage your report more quickly.
 
 If you are reporting for a bug bounty, more complete reports can contribute to a higher bounty award. Please visit our [Microsoft Bug Bounty Program](https://www.microsoft.com/en-us/msrc/bounty?rtc=2) page for more details about our active programs.
 
-## Preferred Languages
+## Preferred Languages <!-- END MICROSOFT SECURITY.MD BLOCK -->
 
 We prefer all communications to be in English.
 
-## Policy
+## Policy <!-- END MICROSOFT SECURITY.MD BLOCK -->
 
 Microsoft follows the principle of [Coordinated Vulnerability Disclosure](https://www.microsoft.com/en-us/msrc/cvd?rtc=2).
 
-<!-- END MICROSOFT SECURITY.MD BLOCK -->
+## Group Policy <!-- start MICROSOFT SECURITY.MD BLOCK --> 5.0
