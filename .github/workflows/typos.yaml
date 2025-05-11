@@ -1,5 +1,3 @@
-# Check pull requests for typos.
-#
 # Configuration: .github/_typos.toml
 #
 # Info:          https://github.com/marketplace/actions/typos-action
@@ -16,15 +14,15 @@ on:
 
 jobs:
   run:
-    name: Spell Check with Typos
+    name: Spell Check with Typescript
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
+       name: Check out code
+  uses: actions/checkout@v4
         with:
-          persist-credentials: false
+   persist-credentials: false
 
-      - name: Use custom config file
+       name: Use custom config file
         uses: crate-ci/typos@v1.31.1
         with:
           config: .github/_typos.toml
